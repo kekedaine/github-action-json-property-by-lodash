@@ -986,10 +986,22 @@ function run() {
         const path = core.getInput('path');
         const exitOnError = core.getInput('exit_on_error') === 'true';
         const prop = core.getInput('prop_path');
+        const prop2 = core.getInput('prop_path2');
         try {
             const buffer = yield readFileAsync(path);
             const json = JSON.parse(buffer.toString());
             const nestedProp = (0, lodash_1.get)(json, prop);
+            if (prop2 && prop2 !== prop) {
+                const nestedProp2 = (0, lodash_1.get)(json, prop2);
+                if (nestedProp2) {
+                    core.setOutput('prop2', nestedProp2);
+                }
+                else {
+                    if (exitOnError == true)
+                        return core.setFailed(new Error('prod2 not found'));
+                    core.setFailed('');
+                }
+            }
             if (nestedProp) {
                 core.setOutput('prop', nestedProp);
             }

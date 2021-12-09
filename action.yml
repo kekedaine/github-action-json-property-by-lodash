@@ -6,6 +6,8 @@ inputs:
     description: 'path to json file'
   prop_path:
     description: 'dot separated property key (e.g.: scripts.build)'
+  prop_path2:
+    description: 'dot separated property key (e.g.: scripts.build)'
 runs:
   using: 'node12'
   main: 'dist/index.js'

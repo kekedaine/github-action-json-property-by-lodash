@@ -26,7 +26,10 @@ jobs:
       with:
         path: 'package.json'
         prop_path: 'scripts.format'
-    - run: echo ${{steps.get_json_property.outputs.prop}}
+        prop_path2: 'version'
+
+    - run: echo "prop = ${{ steps.get_json_property.outputs.prop }}"
+    - run: echo "prop2 = ${{ steps.get_json_property.outputs.prop2 }}"
 
     - name: get item in array
       id: version
