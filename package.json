@@ -1,6 +1,6 @@
 {
   "name": "get-json-property-by-lodash",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Simple GitHub Action to read a specified property from a JSON file. With lodash.get()",
   "main": "lib/index.js",
