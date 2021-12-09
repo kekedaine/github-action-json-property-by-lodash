@@ -12,7 +12,7 @@ https://lodash.com/docs/4.17.15#get
 ...
 - name: get version
     id: version
-    uses: kekedaine/github-action-json-property-by-lodash@release
+    uses: kekedaine/github-action-json-property-by-lodash@0.1.5
     with:
         path: 'package.json'
         prop_path: 'keywords[0]' # version| scripts.build
