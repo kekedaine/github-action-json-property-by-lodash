@@ -979,7 +979,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const fs_1 = __importDefault(__webpack_require__(747));
 const util_1 = __importDefault(__webpack_require__(669));
-const lodash_1 = __importDefault(__webpack_require__(557));
+const lodash_1 = __webpack_require__(557);
 const readFileAsync = util_1.default.promisify(fs_1.default.readFile);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -989,7 +989,7 @@ function run() {
         try {
             const buffer = yield readFileAsync(path);
             const json = JSON.parse(buffer.toString());
-            const nestedProp = lodash_1.default.get(json, prop);
+            const nestedProp = (0, lodash_1.get)(json, prop);
             if (nestedProp) {
                 core.setOutput('prop', nestedProp);
             }

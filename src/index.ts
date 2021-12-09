@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import fs from 'fs';
 import util from 'util';
-import _ from 'lodash';
+import {get} from 'lodash';
 
 const readFileAsync = util.promisify(fs.readFile);
 
@@ -12,7 +12,7 @@ async function run() {
   try {
     const buffer = await readFileAsync(path);
     const json = JSON.parse(buffer.toString());
-    const nestedProp = _.get(json, prop);
+    const nestedProp = get(json, prop);
     if (nestedProp) {
       core.setOutput('prop', nestedProp);
     } else {
