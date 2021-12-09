@@ -1,29 +1,30 @@
 import * as core from '@actions/core';
 import fs from 'fs';
 import util from 'util';
-const readFileAsync = util.promisify(fs.readFile);
+import _ from 'lodash';
 
-function getNestedObject(nestedObj: any, pathArr: string[]) {
-  return pathArr.reduce(
-    (obj, key) => (obj && obj[key] !== 'undefined' ? obj[key] : undefined),
-    nestedObj
-  );
-}
+const readFileAsync = util.promisify(fs.readFile);
 
 async function run() {
   const path: string = core.getInput('path');
-  const prop: string[] = core.getInput('prop_path').split('.');
+  const exitOnError: boolean = core.getInput('exit_on_error') === 'true';
+  const prop: string = core.getInput('prop_path');
   try {
     const buffer = await readFileAsync(path);
     const json = JSON.parse(buffer.toString());
-    const nestedProp = getNestedObject(json, prop);
+    const nestedProp = _.get(json, prop);
     if (nestedProp) {
       core.setOutput('prop', nestedProp);
     } else {
-      core.setFailed('no value found :(');
+      if (exitOnError == true)
+        return core.setFailed(new Error('prod not found'));
+
+      core.setFailed('');
     }
-  } catch (error) {
-    core.setFailed(error.message);
+  } catch (error: any) {
+    if (exitOnError == true) return core.setFailed(error.message);
+
+    core.setFailed('');
   }
 }
 

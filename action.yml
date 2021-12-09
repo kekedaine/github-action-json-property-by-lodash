@@ -1,6 +1,6 @@
-name: 'Get JSON Property'
-description: 'Simple GitHub Action to read a specified property from a JSON file.'
-author: 'notiz.dev'
+name: 'Get JSON Property By Lodash'
+description: 'Simple GitHub Action to read a specified property from a JSON file. By lodash.get()'
+author: 'kekedaine'
 inputs:
   path:
     description: 'path to json file'
@@ -10,5 +10,5 @@ runs:
   using: 'node12'
   main: 'dist/index.js'
 branding:
-  color: "yellow"
-  icon: "filter"  
+  color: "green"
+  icon: "database"
